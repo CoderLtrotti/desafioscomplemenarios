@@ -5,6 +5,11 @@ import handlerbars from 'express-handlebars';
 import __dirname from './utils.js';
 import { Server } from 'socket.io';
 import mongoose from 'mongoose';
+import ProductsManagers from './dao/productsManager.js';
+
+
+
+
 
 
 
@@ -13,7 +18,12 @@ import mongoose from 'mongoose';
 // Creamos la aplicación
 const app = express();
 const productManager = new ProductManager(".");
+const productManagers = new ProductsManagers();
+
+
 const cart = new Cart();
+
+
 
 
 
