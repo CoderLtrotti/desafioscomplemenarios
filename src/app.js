@@ -6,6 +6,7 @@ import __dirname from './utils.js';
 import { Server } from 'socket.io';
 import mongoose from 'mongoose';
 import ProductsManagers from './dao/productsManager.js';
+import CartManager from './dao/cartsmanager.js';
 
 
 
@@ -19,6 +20,7 @@ import ProductsManagers from './dao/productsManager.js';
 const app = express();
 const productManager = new ProductManager(".");
 const productManagers = new ProductsManagers();
+const cartManagers = new CartManager();
 
 
 const cart = new Cart();
@@ -40,7 +42,19 @@ mongoose.connect('mongodb+srv://CoderLtrotti:TGtIEtoEcViniEQZ@codercluster.lbz1f
 
 );
 
-	 
+app.post('/api/cart/:cartId/product/:productId', (req, res) => {
+	const { cartId, productId } = req.params;
+	
+	// Verificar si el carrito existe
+	if (!cartManager.hasCart(cartId)) {
+	  cartManager.createCart(cartId);
+	}
+	
+	// Agregar el producto al carrito
+	cartManager.addToCart(cartId, productId);
+	
+	res.json({ message: 'Producto agregado al carrito' });
+  });
 
 // Utilizamos el middleware para parsear los datos de la petición
 app.use(express.urlencoded({ extended: true }));
