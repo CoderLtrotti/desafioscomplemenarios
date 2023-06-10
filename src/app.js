@@ -7,7 +7,7 @@ import { Server } from 'socket.io';
 import mongoose from 'mongoose';
 import ProductsManagers from './dao/productsManager.js';
 import CartManager from './dao/cartsmanager.js';
-
+import MessageManager from './dao/mesageManager.js';
 
 
 
@@ -21,6 +21,7 @@ const app = express();
 const productManager = new ProductManager(".");
 const productManagers = new ProductsManagers();
 const cartManagers = new CartManager();
+const messageManager = new MessageManager
 
 
 const cart = new Cart();
@@ -129,6 +130,11 @@ app.post('/api/cart', (req, res) => {
 	res.json(cart.getCart());
   });
 
+  	messageManager.createMessage('Hola, este es un mensaje');
+	const allMessages = messageManager.getAllMessages();
+	console.log(allMessages);
+
+	
   // Get Plantillas 
   
   
