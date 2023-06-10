@@ -7,7 +7,7 @@ import { Server } from 'socket.io';
 import mongoose from 'mongoose';
 import ProductsManagers from './dao/productsManager.js';
 import CartManager from './dao/cartsmanager.js';
-import MessageManager from './dao/mesageManager.js';
+import MessageManager from './dao/messageManager.js';
 
 
 
@@ -21,7 +21,7 @@ const app = express();
 const productManager = new ProductManager(".");
 const productManagers = new ProductsManagers();
 const cartManagers = new CartManager();
-const messageManager = new MessageManager
+const messageManager = new MessageManager();
 
 
 const cart = new Cart();
